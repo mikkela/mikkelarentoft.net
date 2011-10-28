@@ -24,11 +24,15 @@ gem 'jquery-rails'
 
 group :development do
   gem 'rspec-rails'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 group :test do
   gem 'rspec-rails'
   gem 'webrat'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 # To use ActiveModel has_secure_password
