@@ -8,4 +8,14 @@ module ApplicationHelper
       "#{base_title} | #{@title}"
     end
   end
+  def caption
+    if @title.nil?
+      caption_used = "MISSING CAPTION"
+    else
+      caption_used = @title
+    end
+
+    "[#{caption_used}]"
+
+  end
 end

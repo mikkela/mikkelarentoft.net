@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'matchers/page_matchers'
 
 # Specs in this file have access to a helper object that includes
 # the PagesHelper. For example:

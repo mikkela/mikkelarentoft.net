@@ -3,8 +3,31 @@
   <head>
     <title><%= title %></title>
     <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag 'tomatoe/tomatoe.css' %>
   </head>
   <body>
-    <%= yield %>
+    <div class="topNav">
+      <a href="#">Home</a> | <a href="#">Contact</a>
+    </div>
+    <div class="caption">
+      <h1><%= caption %></h1>
+    </div>
+    <div class="leftNav">
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      <%= yield %>
+    </div>
+    <div class="footer">
+      Copyright 2011 Mikado Consult | Design: <a href="http:www.yomena.de">www.yomena.de</a> | Photo: Mylene Bressan for <a href="http://16542.openphoto.net">openphoto.net</a> | CC:<a href="http://creativecommons.org/licenses/by/3.0">Attribution</a>
+   </div>
   </body>
 </html>

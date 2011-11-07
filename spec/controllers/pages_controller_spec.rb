@@ -12,7 +12,32 @@ describe PagesController do
     it "should have the right title" do
       get 'home'
       response.should have_selector("title",
-                      :content => " | Home")
+                      :content => PagesController::HOME_TITLE)
+    end
+
+    it "contains the footer" do
+      get 'home'
+      response.should contain_footer
+    end
+
+    it "contains the top navigation bar" do
+      get 'home'
+      response.should contain_top_navigation
+    end
+
+    it "contains the left navigation bar" do
+      get 'home'
+      response.should contain_left_navigation
+    end
+
+    it "contains the caption" do
+      get 'home'
+      response.should contain_caption PagesController::HOME_TITLE
+    end
+
+    it "contains the content in the main section" do
+      get 'home'
+      response.should contain_content
     end
   end
 
@@ -25,8 +50,32 @@ describe PagesController do
     it "should have the right title" do
       get 'contact'
       response.should have_selector("title",
-                      :content => " | Contact")
+                      :content => PagesController::CONTACT_TITLE)
+    end
+
+    it "contains the footer" do
+      get 'contact'
+      response.should contain_footer
+    end
+
+    it "contains the top navigation bar" do
+      get 'contact'
+      response.should contain_top_navigation
+    end
+
+    it "contains the left navigation bar" do
+      get 'contact'
+      response.should contain_left_navigation
+    end
+
+    it "contains the caption" do
+      get 'contact'
+      response.should contain_caption PagesController::CONTACT_TITLE
+    end
+
+     it "contains the content in the main section" do
+      get 'contact'
+      response.should contain_content
     end
   end
-
 end
