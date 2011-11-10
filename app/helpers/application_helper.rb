@@ -18,4 +18,12 @@ module ApplicationHelper
     "[#{caption_used}]"
 
   end
+
+  def page
+    if @page.nil?
+      "Unknown"
+    else
+      @page
+    end
+  end
 end

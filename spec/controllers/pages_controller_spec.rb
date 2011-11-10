@@ -39,6 +39,11 @@ describe PagesController do
       get 'home'
       response.should contain_content
     end
+
+    it "contains the correct Page meta tag" do
+      get 'home'
+      response.should contain_page_meta_tag PagesController::HOME_PAGE_NAME
+    end
   end
 
   describe "GET 'contact'" do
@@ -76,6 +81,11 @@ describe PagesController do
      it "contains the content in the main section" do
       get 'contact'
       response.should contain_content
+     end
+
+    it "contains the correct Page meta tag" do
+      get 'contact'
+      response.should contain_page_meta_tag PagesController::CONTACT_PAGE_NAME
     end
   end
 end

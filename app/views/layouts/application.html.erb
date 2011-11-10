@@ -2,12 +2,13 @@
 <html>
   <head>
     <title><%= title %></title>
+    <meta name="Page" content="<%= page %>" />
     <%= csrf_meta_tag %>
     <%= stylesheet_link_tag 'tomatoe/tomatoe.css' %>
   </head>
   <body>
     <div class="topNav">
-      <a href="#">Home</a> | <a href="#">Contact</a>
+        <%= link_to "Home", root_path, :id => "topNav.Home" %> | <%= link_to "Contact", contact_path, :id => "topNav.Contact" %>
     </div>
     <div class="caption">
       <h1><%= caption %></h1>
@@ -15,11 +16,10 @@
     <div class="leftNav">
       <ul>
         <li>
-          <a href="#">Home</a>
+          <%= link_to "Home", root_path, :id => "leftNav.Home" %>
         </li>
         <li>
-          <a href="#">Contact</a>
-
+          <%= link_to "Contact", contact_path, :id => "leftNav.Contact" %>
         </li>
       </ul>
     </div>
