@@ -15,31 +15,6 @@ describe PagesController do
                       :content => PagesController::HOME_TITLE)
     end
 
-    it "contains the footer" do
-      get 'home'
-      response.should contain_footer
-    end
-
-    it "contains the top navigation bar" do
-      get 'home'
-      response.should contain_top_navigation
-    end
-
-    it "contains the left navigation bar" do
-      get 'home'
-      response.should contain_left_navigation
-    end
-
-    it "contains the caption" do
-      get 'home'
-      response.should contain_caption PagesController::HOME_TITLE
-    end
-
-    it "contains the content in the main section" do
-      get 'home'
-      response.should contain_content
-    end
-
     it "contains the correct Page meta tag" do
       get 'home'
       response.should contain_page_meta_tag PagesController::HOME_PAGE_NAME
@@ -57,31 +32,6 @@ describe PagesController do
       response.should have_selector("title",
                       :content => PagesController::CONTACT_TITLE)
     end
-
-    it "contains the footer" do
-      get 'contact'
-      response.should contain_footer
-    end
-
-    it "contains the top navigation bar" do
-      get 'contact'
-      response.should contain_top_navigation
-    end
-
-    it "contains the left navigation bar" do
-      get 'contact'
-      response.should contain_left_navigation
-    end
-
-    it "contains the caption" do
-      get 'contact'
-      response.should contain_caption PagesController::CONTACT_TITLE
-    end
-
-     it "contains the content in the main section" do
-      get 'contact'
-      response.should contain_content
-     end
 
     it "contains the correct Page meta tag" do
       get 'contact'

@@ -1,13 +1,3 @@
-Given /^I am on the "(Home|Contact)" page$/ do |page|
-  if page == "Home"
-    visit pages_home_path
-  elsif page == "Contact"
-    visit pages_contact_path
-  else
-    pending
-  end
-end
-
 When /^I select "(Home|Contact)" on the top navigation bar$/ do |choice|
   if choice == "Home"
     click_link "topNav.Home"

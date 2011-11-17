@@ -1,4 +1,6 @@
 MikkelarentoftNet::Application.routes.draw do
+  get "projects/show"
+
   get "pages/home"
 
   get "pages/contact"
