@@ -1,15 +1,14 @@
 Given /^a list of projects$/ do
-  #pending # express the regexp above with the code you wish you had
-end
-
-When /^I select a project from the loist$/ do
-
+  @project1 = Project.create! :name => "Project 1", :description => "A description of my project 1"
+  @project2 = Project.create! :name => "Project 2", :description => "A description of my project 2"
+  @project3 = Project.create! :name => "Project 3", :description => "A description of my project 3"
 end
 
 Then /^I am shown a list of all the projects$/ do
-  #pending # express the regexp above with the code you wish you had
+  page.should have_xpath('.//meta[@name="Page" and @content="' + ProjectsHelper.generate_index_project_page_id + '"]')
+
+  page.should contain(@project1.name)
+  page.should contain(@project2.name)
+  page.should contain(@project3.name)
 end
 
-Then /^I am shown the details of this project$/ do
-  #pending # express the regexp above with the code you wish you had
-end

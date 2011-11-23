@@ -8,8 +8,3 @@ Feature: Browse projects
       Given a list of projects
       When I enter the "Portfolio" page
       Then I am shown a list of all the projects
-
-    Scenario: see details regarding a specific project
-      Given a list of projects
-      When I select a project from the loist
-      Then I am shown the details of this project

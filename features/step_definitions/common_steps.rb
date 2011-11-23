@@ -9,5 +9,5 @@ Given /^I am on the "(Home|Contact|Portfolio)" page$/ do |page|
 end
 
 When /^I enter the "(Portfolio)" page$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+  visit projects_index_path
 end

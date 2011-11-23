@@ -1,0 +1,6 @@
+<% @projects.each do |project| %>
+    <div class="project" id="<%= project.id %>">
+      <h2><%= project.name %></h2>
+      <p><%= project.description %></p>
+    </div>
+<% end %>
