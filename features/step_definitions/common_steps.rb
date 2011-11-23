@@ -3,6 +3,8 @@ Given /^I am on the "(Home|Contact|Portfolio)" page$/ do |page|
     visit pages_home_path
   elsif page == "Contact"
     visit pages_contact_path
+  elsif page == "Portfolio"
+    visit projects_index_path
   else
     pending
   end
