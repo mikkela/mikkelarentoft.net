@@ -33,6 +33,7 @@ group :test do
   gem 'webrat'
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem 'factory_girl'
 end
 
 # To use ActiveModel has_secure_password

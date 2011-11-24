@@ -1,7 +1,7 @@
 Given /^a list of projects$/ do
-  @project1 = Project.create! :name => "Project 1", :description => "A description of my project 1"
-  @project2 = Project.create! :name => "Project 2", :description => "A description of my project 2"
-  @project3 = Project.create! :name => "Project 3", :description => "A description of my project 3"
+  @project1 = Factory(:project, :name => "Project 1")
+  @project2 = Factory(:project, :name => "Project 2")
+  @project3 = Factory(:project, :name => "Project 3")
 end
 
 Then /^I am shown a list of all the projects$/ do
