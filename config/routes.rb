@@ -1,6 +1,7 @@
 MikkelarentoftNet::Application.routes.draw do
-  get "projects/index"
-  get "projects/show"
+  resources :projects
+  #get "projects/index"
+  #get "projects/show"
 
   get "pages/home"
 
@@ -9,6 +10,7 @@ MikkelarentoftNet::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
 
   match '/portfolio', :to => 'projects#index'
+  match '/projects/:id', :to => 'projects#show'
   root :to => 'pages#home'
   # The priority is based upon order of creation:
   # first created -> highest priority.

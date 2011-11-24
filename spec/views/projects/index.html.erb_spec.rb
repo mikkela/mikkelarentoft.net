@@ -40,6 +40,19 @@ describe "projects/index.html.erb" do
 
   end
 
+  it "renders the header as a link to the project"  do
+    render
+
+    @projects.each do |project|
+      rendered.should have_xpath('//div[@class="project" and @id="' + project.id.to_s() + '"]') do  |div|
+        div.should have_selector ("h2") do |header|
+          header.should have_selector("a")
+        end
+      end
+    end
+
+  end
+
   it "renders a project description as paragraph" do
   render
 
