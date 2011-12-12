@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe "projects/index.html.erb" do
 
-
-
   before(:each) do
     @projects = [
       stub_model(Project, :name => "Project 1", :description => "Description 1"),
@@ -65,4 +63,11 @@ describe "projects/index.html.erb" do
     end
   end
 
+  it "renders a new project link" do
+    render
+
+    rendered.should have_xpath('//a[@id="new"]') do |link|
+      link.should contain 'New Project'
+    end
+  end
 end
