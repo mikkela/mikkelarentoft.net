@@ -1,10 +1,6 @@
 # RVM bootstrap
-$:.unshift(File.expand_path("~/.rvm/lib"))
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require 'rvm/capistrano'
-set :rvm_ruby_string, '1.9.2-p290'
-set :rvm_type, :system
-
-# bundler bootstrap
 require 'bundler/capistrano'
 
 # main details
@@ -36,10 +32,6 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_releases => true } do
     run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
   end
-
-  task :symlink_shared, :roles => :app do
-    #run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-  end
 end
 
 task :symlink_database_yml do
@@ -47,5 +39,4 @@ task :symlink_database_yml do
   run "ln -sfn #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 end
 
-after 'deploy:update_code', 'deploy:symlink_shared'
 after 'bundle:install', 'symlink_database_yml'
