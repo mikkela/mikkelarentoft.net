@@ -33,7 +33,6 @@ describe ProjectsController do
       get :show, :id => ID
     end
 
-
     it "contains the correct Page meta tag" do
       get :show, :id => ID
 
@@ -131,10 +130,6 @@ describe ProjectsController do
   end
 
   describe "GET 'new'" do
-    #before(:each) do
-    #  Project.stub(:new).and_return(stub_model(Project))
-    #end
-
     it "returns http success" do
       get :new
       response.should be_success
@@ -152,5 +147,102 @@ describe ProjectsController do
       response.should contain_page_meta_tag ProjectsHelper.generate_new_project_page_id
     end
 
+    it "creates the new project"  do
+      project = mock_model(Project)
+      Project.should_receive(:new).and_return project
+
+      project.should_receive(:name)
+      project.should_receive(:description)
+
+      get :new
+    end
+
+  end
+
+  describe "GET 'edit'" do
+    ID = "1"
+
+    before(:each) do
+      Project.stub(:find).and_return stub_model(Project, :name => 'Name', :description => 'Description')
+    end
+
+    it "returns http success" do
+      get :edit, :id => ID
+      response.should be_success
+    end
+
+    it "should have the right title" do
+      get :edit, :id => ID
+      response.should have_selector("title",
+                      :content => ProjectsController::EDIT_TITLE)
+    end
+
+    it "contains the correct Page meta tag" do
+      get :edit, :id => ID
+
+      response.should contain_page_meta_tag ProjectsHelper.generate_edit_project_page_id(ID)
+    end
+
+    it "retreives the requested project"  do
+      project = mock_model(Project)
+      Project.should_receive(:find).with(ID).and_return project
+
+      project.should_receive(:name)
+      project.should_receive(:description)
+
+      get :edit, :id => ID
+    end
+  end
+
+  describe "PUT 'update'" do
+    before(:each) do
+      @project = mock_model(Project, :save => nil).as_null_object
+      Project.stub(:find).and_return(@project)
+    end
+
+    it "retreives the requested project"  do
+      Project.should_receive(:find).with(@project.id.to_s).and_return @project
+
+      put :update, :id => @project.id
+    end
+
+    it "updates the retreived project"  do
+      @project.should_receive(:update_attributes).
+          with("name" => "my new project name")
+
+      put :update, :id => @project.id, :project => { "name" => "my new project name"}
+    end
+
+    context "when the message updates successfully" do
+      before (:each) do
+        @project.stub(:update_attributes).and_return(true)
+      end
+
+      it "sets a flash[:notice] message"  do
+        put :update, :id => @project.id
+        flash[:notice].should == "The project was updated"
+      end
+
+      it "redirects to the project" do
+        put :update, :id => @project.id
+        response.should redirect_to(project_path)
+      end
+    end
+
+    context "when the message fails to update" do
+      before (:each) do
+        @project.stub(:update_attributes).and_return(false)
+      end
+
+      it "sets a flash[:notice] message"  do
+        put :update, :id => @project.id
+        flash[:notice].should == "The project was not updated"
+      end
+
+      it "renders the edit template" do
+        put :update, :id => @project.id
+        response.should render_template("edit")
+      end
+    end
   end
 end

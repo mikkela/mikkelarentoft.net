@@ -1,3 +1,10 @@
+Given /^there is a project named "([^"]*)"$/ do |name|
+  if @projects == nil
+    @projects = Array.new
+  end
+  @projects.push Factory(:project, :name => name)
+end
+
 When /^I follow "([^"]*)"$/ do |link|
   click_link link
 end
@@ -10,13 +17,7 @@ When /^I press "([^"]*)"$/ do |button|
   click_button button
 end
 
-
 Then /^I should see "([^"]*)"$/ do |text|
   page.should contain(text)
-end
-
-Then /^a project named "([^"]*)" with description "([^"]*)" appears in the list of projects$/ do |name, description|
-  page.should contain(name)
-  page.should contain(description)
 end
 

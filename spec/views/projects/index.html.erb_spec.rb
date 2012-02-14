@@ -44,7 +44,7 @@ describe "projects/index.html.erb" do
     @projects.each do |project|
       rendered.should have_xpath('//div[@class="project" and @id="' + project.id.to_s() + '"]') do  |div|
         div.should have_selector ("h2") do |header|
-          header.should have_selector("a")
+          header.should have_selector("a", :href => projects_path(project))
         end
       end
     end
@@ -62,6 +62,17 @@ describe "projects/index.html.erb" do
       end
     end
   end
+
+  it "renders an edit link for the project"  do
+      render
+
+      @projects.each do |project|
+        rendered.should have_xpath('//div[@class="project" and @id="' + project.id.to_s() + '"]') do  |div|
+          div.should have_selector("a", :href => edit_project_path(project))
+        end
+      end
+
+    end
 
   it "renders a new project link" do
     render
