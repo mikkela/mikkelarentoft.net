@@ -35,7 +35,6 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
   end
 end
-load 'deploy/assets'
 
 task :symlink_database_yml do
   run "rm #{release_path}/config/database.yml"
